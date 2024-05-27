@@ -17,6 +17,7 @@ public class Mission2_1 {
 		
 		int answer2[] = new int[count];
 		// 배열 복사 API
+	    // 원본, 원본 소스에서 읽어올 위치, 복사할 소스, 복사본에서 시작 위치, 원본에서 복사본으로 데이터 읽어서 쓸 데이터 길이
 		System.arraycopy(answer, 0, answer2, 0, count);
 //		for(int i = 0; i < count; i++) {
 //			answer2[i] = answer[i];

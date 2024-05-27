@@ -3,7 +3,7 @@ package kosa.mission2;
 import java.util.Scanner;
 
 public class Mission2_9 {
-
+// Mission 2_3.java(나의 풀이) 문제 - 교수님 풀이(Mission2_9.java)
 	public static int solution(int n, int arr[][]) {
 		int answer = 0;
 		int sum1 = 0; // 가로
