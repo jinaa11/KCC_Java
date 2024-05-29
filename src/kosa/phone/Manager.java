@@ -32,4 +32,16 @@ public class Manager {
 			arr[i].show();
 		}
 	}
+	
+	public void searchPhoneInfo() {
+		System.out.print("검색할 이름: ");
+		String name = sc.nextLine();
+		for(int i = 0; i < count; i++) {
+			if(name.equals(arr[i].getName())) {
+				System.out.println("검색한 이름: " + name);
+				arr[i].show();
+			}
+		}
+		
+	}
 }
