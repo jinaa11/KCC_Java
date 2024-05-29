@@ -1,31 +1,32 @@
-package kosa.video;
+package kosa.pratice;
 
 public class GeneralMember {
 	private String id;
 	private String name;
 	private String address;
-	private Video rentalVideo;
+	private Video video;
 	
 	public GeneralMember() {}
 
 	public GeneralMember(String id, String name, String address) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 	}
-	
+
 	public void rent(Video video) {
-		this.rentalVideo = video;
+		this.video = video;
 	}
 	
 	public void show() {
 		System.out.println("회원의 아이디 :" + id);
 		System.out.println("회원의 이름 :" + name);
 		System.out.println("회원의 주소 :" + address);
-
-		rentalVideo.show();
+		
+		video.show();
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -49,5 +50,6 @@ public class GeneralMember {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
+	
+	
 }

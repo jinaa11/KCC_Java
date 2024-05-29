@@ -1,31 +1,30 @@
-package kosa.video;
+package kosa.pratice;
 
-// 1개의 비디오를 위한 클래스
 public class Video {
-	private int num;
+	private String num;
 	private String title;
 	private String actor;
-
-	public Video() {
-	}
-
-	public Video(int num, String title, String actor) {
+	
+	public Video() {}
+	
+	public Video(String num, String title, String actor) {
+		super();
 		this.num = num;
 		this.title = title;
 		this.actor = actor;
 	}
-
+	
 	public void show() {
 		System.out.println("회원이 대여한 비디오 번호: " + num);
 		System.out.println("회원이 대여한 비디오 제목: " + title);
 		System.out.println("회원이 대여한 비디오 배우: " + actor);
 	}
 
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 
@@ -44,4 +43,8 @@ public class Video {
 	public void setActor(String actor) {
 		this.actor = actor;
 	}
+	
+	
+	
+	
 }
