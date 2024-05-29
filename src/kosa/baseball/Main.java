@@ -16,12 +16,11 @@ public class Main {
 			for (int j = 0; j < i; j++) {
 				if (answer[i] == answer[j]) {
 					i--;
+					break;
 				}
 			}
 		}
-		for(int i : answer) {
-			System.out.println(i);
-		}
+
 		// 3개의 수 입력
 		while (true) {
 			Scanner sc = new Scanner(System.in);
@@ -29,10 +28,10 @@ public class Main {
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = sc.nextInt();
 			}
-			sc.nextLine();
-			b.checkStrike(arr, answer);
+			int sCount = b.checkStrike(arr, answer);
+			if (sCount == 3) {
+				break;
+			}
 		}
-
 	}
-
 }
