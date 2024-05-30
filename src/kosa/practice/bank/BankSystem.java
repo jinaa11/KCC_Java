@@ -1,4 +1,4 @@
-package kosa.pratice.bank;
+package kosa.practice.bank;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package kosa.pratice.video;
+package kosa.practice.video;
 
 public class GeneralMember {
 	private String id;

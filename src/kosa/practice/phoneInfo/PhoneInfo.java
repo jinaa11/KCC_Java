@@ -1,4 +1,4 @@
-package kosa.pratice.phoneInfo;
+package kosa.practice.phoneInfo;
 
 public class PhoneInfo {
 	private String name;
