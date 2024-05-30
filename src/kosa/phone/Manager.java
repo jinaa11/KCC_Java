@@ -34,13 +34,22 @@ public class Manager {
 	}
 	
 	public void searchPhoneInfo() {
+		// 검색하고자 하는 이름으로 1개의 PhoneInfo 객체의 내용 출력
 		System.out.print("검색할 이름: ");
 		String name = sc.nextLine();
+		int idx = -1;
+		
 		for(int i = 0; i < count; i++) {
 			if(name.equals(arr[i].getName())) {
 				System.out.println("검색한 이름: " + name);
 				arr[i].show();
+				idx = i;
 			}
+		}
+		
+		// 검색된 내용이 없는 경우
+		if(idx == -1) {
+			System.out.println("존재하지 않는 이름입니다.");
 		}
 		
 	}
