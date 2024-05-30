@@ -1,4 +1,4 @@
-package kosa.pratice;
+package kosa.pratice.video;
 
 public class Main {
 
