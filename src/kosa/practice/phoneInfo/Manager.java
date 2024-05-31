@@ -47,15 +47,22 @@ public class Manager {
 	public void updatePhoneInfo() {
 		System.out.print("수정할 이름: ");
 		String name = sc.nextLine();
+		int idx = -1;
 
 		for (int i = 0; i < count; i++) {
 			if (name.equals(phone[i].getName())) {
 				System.out.print("수정할 번호: ");
 				String newPhone = sc.nextLine();
+				// 데이터를 수정할 때는 setter 사용
 				phone[i].setPhoneNo(newPhone);
+				idx = i;
 			}
 		}
 		System.out.println("수정 완료");
+		
+		if(idx == -1) {
+			System.out.println("존재하지 않습니다.");
+		}
 	}
 
 	public void deletePhoneInfo() {

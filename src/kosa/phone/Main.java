@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(System.in);
 		Manager m = new Manager();
 
 		// 만약 while문 안에서 Manager 객체를 생성하면 배열이 계속적으로 생겨서 어느 배열에 있는지 구분하기 어려움
@@ -14,7 +14,7 @@ public class Main {
 		while (true) {
 			System.out.println("1.추가 2.전체출력 3.검색 4.수정 5.삭제 6.종료");
 			System.out.print("메뉴 입력: ");
-			String menu = sc.nextLine();
+			String menu = DataInput.sc.nextLine();
 
 			switch (menu) {
 			case "1":
