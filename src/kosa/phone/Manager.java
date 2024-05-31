@@ -3,8 +3,7 @@ package kosa.phone;
 import java.util.Scanner;
 
 // 전화번호 관리 전반적인 기능
-public class Manager {
-//	private PhoneInfo arr[] = new PhoneInfo[10];
+public class Manager extends PhoneInfo {
 	private PhoneInfo arr[];
 //	private Scanner sc;
 	private int count;
@@ -17,19 +16,70 @@ public class Manager {
 	public void addPhoneInfo() {
 		// 키보드로부터 이름, 전화번호, 생년월일을 입력 받아
 		// PhoneInfo 객체를 생성해서 배열에 추가하는 것
-		System.out.print("이름: ");
-		String name = DataInput.sc.nextLine();
-		System.out.print("전화번호: ");
-		String phoneNo = DataInput.sc.nextLine();
-		System.out.print("생년월일: ");
-		String birth = DataInput.sc.nextLine();
+		String dept, position, major, year;
+		System.out.println("1. 일반 2. 회사 3.동창");
+		System.out.print("메뉴: ");
+		String menu = DataInput.sc.nextLine();
 
-		arr[count++] = new PhoneInfo(name, phoneNo, birth);
-	};
+		switch (menu) {
+		// 일반
+		case "1":
+			input();
+			arr[count++] = new PhoneInfo(getName(), getPhoneNo(), getBirth());
+			break;
+		// 회사
+		case "2":
+			input();
+			System.out.print("부서: ");
+			dept = DataInput.sc.nextLine();
+			System.out.print("직책: ");
+			position = DataInput.sc.nextLine();
+
+			arr[count++] = new Company(getName(), getPhoneNo(), getBirth(), dept, position);
+			break;
+		// 동창
+		case "3":
+			input();
+			System.out.print("전공: ");
+			major = DataInput.sc.nextLine();
+			System.out.print("학번: ");
+			year = DataInput.sc.nextLine();
+
+			arr[count++] = new Universe(getName(), getPhoneNo(), getBirth(), major, year);
+		}
+	}
 
 	public void listPhoneInfo() {
-		for (int i = 0; i < count; i++) {
-			arr[i].show();
+		System.out.println("1. 전체 2. 회사 3.동창");
+		System.out.print("메뉴: ");
+		String menu = DataInput.sc.nextLine();
+
+		switch (menu) {
+		// 일반
+		case "1":
+			for (int i = 0; i < count; i++) {
+				if (arr[i] instanceof PhoneInfo) {
+					arr[i].show();
+				}
+			}
+			break;
+
+		// 회사
+		case "2":
+			for (int i = 0; i < count; i++) {
+				if (arr[i] instanceof Company) {
+					((Company) arr[i]).show();
+				}
+			}
+			break;
+
+		// 동창
+		case "3":
+			for (int i = 0; i < count; i++) {
+				if (arr[i] instanceof Universe) {
+					((Universe) arr[i]).show();
+				}
+			}
 		}
 	}
 

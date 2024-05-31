@@ -21,6 +21,15 @@ public class PhoneInfo {
 		System.out.println("생년월일: " + birth);
 	}
 	
+	public void input() {
+		System.out.print("이름: ");
+		name = DataInput.sc.nextLine();
+		System.out.print("전화번호: ");
+		phoneNo = DataInput.sc.nextLine();
+		System.out.print("생년월일: ");
+		birth = DataInput.sc.nextLine();
+	}
+	
 	public String getName() {
 		return name;
 	}

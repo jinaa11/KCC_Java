@@ -5,9 +5,9 @@ public class Account {
 	// 객체로부터 공통된 데이터 구조와 기능을 추출
 	// 상태(데이터): 계좌 번호, 계좌주, 잔액 => 멤버변수(=필드) - 객체가 소멸할 때까지 존재
 	// 행동(기능):입금하다, 출금하다 => 멤버 메서드
-	String accountNo; // 계좌번호
-	String ownerName; // 계좌주
-	int balance; // 잔액
+	private String accountNo; // 계좌번호
+	private String ownerName; // 계좌주
+	private int balance; // 잔액
 	
 	// 생성자
 	public Account() {} // 디폴트 생성자
@@ -30,6 +30,10 @@ public class Account {
 		balance += amount;
 	}
 
+	public void print() {
+		System.out.println("부모");
+	}
+	
 	// 출금하다
 	public int withdraw(int amount) throws Exception {
 		if (balance < amount) {
@@ -41,5 +45,30 @@ public class Account {
 
 		return amount;
 	}
+	
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
 
 }
