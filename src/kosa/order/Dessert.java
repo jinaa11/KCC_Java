@@ -10,6 +10,13 @@ public class Dessert extends MenuItem {
 		this.calories = calories;
 	}
 
+	@Override
+	public void show() {
+		super.show();
+		System.out.println("Ä®·Î¸®: " + calories);
+		System.out.println("------------------------");
+	}
+
 	public int getCalories() {
 		return calories;
 	}

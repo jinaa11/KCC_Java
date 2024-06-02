@@ -15,7 +15,9 @@ public class MenuItem {
 	}
 	
 	public void show() {
-		System.out.println("");
+		System.out.println("이름: " + name);
+		System.out.println("가격: " + price);
+		System.out.println("설명: " + description);
 	}
 
 	public String getName() {

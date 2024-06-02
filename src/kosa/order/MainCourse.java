@@ -10,6 +10,13 @@ public class MainCourse extends MenuItem {
 		this.baked = baked;
 	}
 
+	@Override
+	public void show() {
+		super.show();
+		System.out.println("±Á±â Á¤µµ: " + baked);
+		System.out.println("------------------------");
+	}
+
 	public String getBaked() {
 		return baked;
 	}

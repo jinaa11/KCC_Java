@@ -10,6 +10,13 @@ public class Appetizer extends MenuItem {
 		this.glutenFree = glutenFree;
 	}
 
+	@Override
+	public void show() {
+		super.show();
+		System.out.println("±€∑Á≈Ÿ ø©∫Œ: " + glutenFree);
+		System.out.println("------------------------");
+	}
+
 	public boolean isGlutenFree() {
 		return glutenFree;
 	}
