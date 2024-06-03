@@ -13,7 +13,6 @@ public class Person {
 	}
 
 	public void doIt() {
-		System.out.println(name);
 		role.doing();
 	}
 	
