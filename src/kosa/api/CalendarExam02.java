@@ -17,12 +17,12 @@ public class CalendarExam02 {
 				
 		gc.set(2024, 5, 1);
 		int week = gc.get(Calendar.DAY_OF_WEEK);
-		for(int i = 1; i < week; i++) {
-			System.out.println("\t");
+		for(int i = 1; i < week; i++) { // 첫 줄에서 1을 6개만큼 탭으로 띄우기
+			System.out.print("\t");
 		}
 		for(int i = 1; i <= n; i++) {
 			System.out.print(i + "\t");
-			if((week + i - 1) % 7 == 0) {
+			if((week + i - 1) % 7 == 0) { // 7개씩 줄 띄우기
 				System.out.println();
 			}
 		}
