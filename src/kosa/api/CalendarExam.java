@@ -39,6 +39,7 @@ public class CalendarExam {
 		
 		for(int i = 2024; i <= 2030; i++) {
 			gc.set(i, 12, 1); // 6월 4일
+			System.out.println();
 			char c = week[gc.get(Calendar.DAY_OF_WEEK) - 1];
 			System.out.println(i + "년의 생일은 " + c + "요일입니다.");
 		}

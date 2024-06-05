@@ -19,5 +19,4 @@ public class DateMission {
 
 		System.out.println(year + "년 " + Math.abs(month) + "개월 재직 중");
 	}
-
 }
