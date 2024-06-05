@@ -1,15 +1,21 @@
 package kosa.phone;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 // 전화번호 관리 전반적인 기능
 public class Manager extends PhoneInfo {
-	private PhoneInfo arr[];
+//	private PhoneInfo arr[];
 //	private Scanner sc;
+	List<PhoneInfo> list;
 	private int count;
 
 	public Manager() {
-		arr = new PhoneInfo[10];
+//		arr = new PhoneInfo[10];
+		list = new ArrayList<PhoneInfo>();
 //		sc = new Scanner(System.in);
 	}
 
@@ -25,7 +31,8 @@ public class Manager extends PhoneInfo {
 		// 일반
 		case "1":
 			input();
-			arr[count++] = new PhoneInfo(getName(), getPhoneNo(), getBirth());
+//			arr[count++] = new PhoneInfo(getName(), getPhoneNo(), getBirth());
+			list.add(new PhoneInfo(getName(), getPhoneNo(), getBirth()));
 			break;
 		// 회사
 		case "2":
@@ -35,7 +42,8 @@ public class Manager extends PhoneInfo {
 			System.out.print("직책: ");
 			position = DataInput.sc.nextLine();
 
-			arr[count++] = new Company(getName(), getPhoneNo(), getBirth(), dept, position);
+//			arr[count++] = new Company(getName(), getPhoneNo(), getBirth(), dept, position);
+			list.add(new Company(getName(), getPhoneNo(), getBirth(), dept, position));
 			break;
 		// 동창
 		case "3":
@@ -45,7 +53,9 @@ public class Manager extends PhoneInfo {
 			System.out.print("학번: ");
 			year = DataInput.sc.nextLine();
 
-			arr[count++] = new Universe(getName(), getPhoneNo(), getBirth(), major, year);
+//			arr[count++] = new Universe(getName(), getPhoneNo(), getBirth(), major, year);
+			list.add(new Universe(getName(), getPhoneNo(), getBirth(), major, year));
+
 		}
 	}
 
@@ -57,27 +67,48 @@ public class Manager extends PhoneInfo {
 		switch (menu) {
 		// 일반
 		case "1":
-			for (int i = 0; i < count; i++) {
-				if (arr[i] instanceof PhoneInfo) {
-					arr[i].show();
-				}
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i) instanceof PhoneInfo) {
+//					((PhoneInfo) list.get(i)).show();
+//				}
+//			}
+
+			Iterator<PhoneInfo> it = list.iterator();
+			while (it.hasNext()) {
+				it.next().show();
 			}
+
 			break;
 
 		// 회사
 		case "2":
-			for (int i = 0; i < count; i++) {
-				if (arr[i] instanceof Company) {
-					((Company) arr[i]).show();
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i) instanceof Company) {
+//					((Company) list.get(i)).show();
+//				}
+//			}
+
+			it = list.iterator();
+			while (it.hasNext()) {
+				PhoneInfo p1 = it.next();
+				if (p1 instanceof Company) {
+					p1.show();
 				}
 			}
 			break;
 
 		// 동창
 		case "3":
-			for (int i = 0; i < count; i++) {
-				if (arr[i] instanceof Universe) {
-					((Universe) arr[i]).show();
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i) instanceof Universe) {
+//					((Universe) list.get(i)).show();
+//				}
+//			}
+			it = list.iterator();
+			while(it.hasNext()) {
+				PhoneInfo p1 = it.next();
+				if(p1 instanceof Universe) {
+					p1.show();
 				}
 			}
 		}
@@ -89,10 +120,10 @@ public class Manager extends PhoneInfo {
 		String name = DataInput.sc.nextLine();
 		int idx = -1;
 
-		for (int i = 0; i < count; i++) {
-			if (name.equals(arr[i].getName())) {
+		for (int i = 0; i < list.size(); i++) {
+			if (name.equals(list.get(i).getName())) {
 				System.out.println("검색한 이름: " + name);
-				arr[i].show();
+				list.get(i).show();
 				idx = i;
 			}
 		}
@@ -110,12 +141,12 @@ public class Manager extends PhoneInfo {
 		String name = DataInput.sc.nextLine();
 		int idx = -1;
 
-		for (int i = 0; i < count; i++) {
-			if (name.equals(arr[i].getName())) {
+		for (int i = 0; i < list.size(); i++) {
+			if (name.equals(list.get(i).getName())) {
 				System.out.print("수정할 번호: ");
 				String newPhone = DataInput.sc.nextLine();
 				// 데이터를 수정할 때는 setter 사용
-				arr[i].setPhoneNo(newPhone);
+				list.get(i).setPhoneNo(newPhone);
 				idx = i;
 			}
 		}
@@ -151,23 +182,16 @@ public class Manager extends PhoneInfo {
 		String name = DataInput.sc.nextLine();
 		int idx = -1;
 
-		for (int i = 0; i < count; i++) {
-			if (name.equals(arr[i].getName())) {
+		for (int i = 0; i < list.size(); i++) {
+			if (name.equals(list.get(i).getName())) {
 				idx = i;
+				list.remove(i);
 			}
 		}
+		System.out.println("삭제 완료");
 
 		if (idx == -1) {
 			System.out.println("존재하지 않습니다.");
-		} else {
-			for (int i = idx; i < count; i++) {
-				if (i == arr.length - 1) {
-					arr[i] = null;
-				} else {
-					arr[i] = arr[i + 1];
-				}
-			}
-			count--;
 		}
 	}
 }
