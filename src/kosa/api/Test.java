@@ -39,6 +39,7 @@ public class Test {
 		for (String address : addresses) {
 			Matcher m = p.matcher(address);
 			if (m.find())
+				// getOrDefault: 처음이면 0을 넣고 있으면 1씩 증가
 				map.put(m.group(), map.getOrDefault(m.group(), 0) + 1);
 		}
 

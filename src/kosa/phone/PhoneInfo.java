@@ -1,7 +1,7 @@
 package kosa.phone;
 
 // 1명의 전화번호 도메인
-public class PhoneInfo {
+public class PhoneInfo implements Comparable<PhoneInfo> {
 	// (name, phoneNo, birth): 필드
 	private String name;
 	private String phoneNo;
@@ -53,7 +53,14 @@ public class PhoneInfo {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	
-	
-	
+
+	@Override
+	public int compareTo(PhoneInfo o) {
+		if(name.compareTo(o.name) > 0) {
+			return 1;
+		} else if(name.compareTo(o.name) < 0) {
+			return -1;
+		}
+		return 0;
+	}
 }

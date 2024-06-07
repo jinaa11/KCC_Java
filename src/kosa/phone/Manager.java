@@ -2,6 +2,8 @@ package kosa.phone;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -105,9 +107,9 @@ public class Manager extends PhoneInfo {
 //				}
 //			}
 			it = list.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				PhoneInfo p1 = it.next();
-				if(p1 instanceof Universe) {
+				if (p1 instanceof Universe) {
 					p1.show();
 				}
 			}
@@ -192,6 +194,33 @@ public class Manager extends PhoneInfo {
 
 		if (idx == -1) {
 			System.out.println("존재하지 않습니다.");
+		}
+	}
+
+	public void sortPhoneInfo() {
+		System.out.println("======== 정렬 기준 선택 ========");
+		System.out.println("1.이름 오름차순 2.생년월일 내림차순");
+		System.out.print("메뉴: ");
+		String menu = DataInput.sc.nextLine();
+//		Collections.sort(list);
+		switch (menu) {
+		case "1":
+			Collections.sort(list);
+			break;
+		case "2":
+			Collections.sort(list, new Comparator<PhoneInfo>() {
+
+				@Override
+				public int compare(PhoneInfo o1, PhoneInfo o2) {
+					if(o1.getBirth().compareTo(o2.getBirth()) > 0) {
+						return -1;
+					} else if(o1.getBirth().compareTo(o2.getBirth()) < 0) {
+						return 1;
+					}
+					return 0;
+				}
+			});
+			break;
 		}
 	}
 }
