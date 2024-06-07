@@ -17,10 +17,10 @@ public class Main {
 				sm.addProduct();
 				break;
 			case "3":
-
+				sm.listCategory();
 				break;
 			case "4":
-
+				sm.orderProduct();
 				break;
 			case "5":
 

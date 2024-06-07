@@ -1,52 +1,42 @@
 package kosa.shop;
 
 public class Product extends Category {
-	private int id;
-	private String name;
+	private int productId;
+	private String productName;
 	private int price;
-//	private Category category;
 
 	public Product() {
 	}
-	
-	public Product(int id, String name, int id2, String name2, int price) {
-		super(id, name);
-		id = id2;
-		name = name2;
+
+	public Product(int categoryId, String categoryName, int productId, String productName, int price) {
+		super(categoryId, categoryName);
+		this.productId = productId;
+		this.productName = productName;
 		this.price = price;
 	}
 
-	// 카테고리 추가
-//	public Product(int id, String name, int price) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.price = price;
-////		this.category = category;
-//	}
-	
 	public void show() {
-		System.out.println("카테고리 아이디: " + getId());
-		System.out.println("카테고리: " + getName());
-		System.out.println("상품 아이디: " + id);
-		System.out.println("상품명: " + name);
+		System.out.println("카테고리 아이디: " + getCategoryId());
+		System.out.println("카테고리: " + getCategoryName());
+		System.out.println("상품 아이디: " + productId);
+		System.out.println("상품명: " + productName);
 		System.out.println("가격: " + price);
 	}
 
-	public int getId() {
-		return id;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public int getPrice() {
@@ -56,13 +46,5 @@ public class Product extends Category {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
-//	public Category getCategory() {
-//		return category;
-//	}
-//
-//	public void setCategory(Category category) {
-//		this.category = category;
-//	}
 
 }
