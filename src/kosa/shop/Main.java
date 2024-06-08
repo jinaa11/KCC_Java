@@ -23,7 +23,7 @@ public class Main {
 				sm.orderProduct();
 				break;
 			case "5":
-
+				sm.customerOrderList();
 				break;
 			case "6":
 				System.out.println("프로그램 종료");

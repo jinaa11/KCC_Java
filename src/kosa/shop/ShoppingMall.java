@@ -104,6 +104,7 @@ public class ShoppingMall {
 		for(int i = 0; i < product.size(); i++) {
 			if(orderProduct.equals(product.get(i).getProductName())) {
 				order.add(new Order(orderId++, orderCustomer, product.get(i), amount));
+				System.out.println("주문이 성공적으로 추가되었습니다.");
 				
 			}
 		}
@@ -112,5 +113,26 @@ public class ShoppingMall {
 		while(it.hasNext()) {
 			it.next().show();
 		}
+	}
+	
+	// 개별 주문 목록 보기
+	public void customerOrderList() {
+		System.out.print("주문자명: ");
+		String orderName = DataInput.sc.nextLine();
+		
+//		Iterator<Order> it = order.iterator();
+//		while(it.hasNext()) {
+//			if(orderName.equals(it.next().getCustomer().getName())) {
+//				it.next().show();
+//			}
+//		}
+		
+		for(int i = 0; i < order.size(); i++) {
+			if(orderName.equals(order.get(i).getCustomer().getName())) {
+				order.get(i).show();
+			}
+		}
+		
+		
 	}
 }

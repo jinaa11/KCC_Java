@@ -16,11 +16,18 @@ public class Product extends Category {
 	}
 
 	public void show() {
-		System.out.println("카테고리 아이디: " + getCategoryId());
-		System.out.println("카테고리: " + getCategoryName());
-		System.out.println("상품 아이디: " + productId);
-		System.out.println("상품명: " + productName);
-		System.out.println("가격: " + price);
+//		System.out.println("카테고리 아이디: " + getCategoryId());
+//		System.out.println("카테고리: " + getCategoryName());
+//		System.out.println("상품 아이디: " + productId);
+//		System.out.println("상품명: " + productName);
+//		System.out.println("가격: " + price);
+		System.out.println(this.toString());
+	}
+
+	@Override
+	public String toString() {
+		return "상품 아이디: " + productId + ", 상품명: " + productName + ", 가격 " + price + ", 카테고리 아이디: "
+				+ getCategoryId() + ", 카테고리: " + getCategoryName();
 	}
 
 	public int getProductId() {

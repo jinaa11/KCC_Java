@@ -17,11 +17,16 @@ public class Order {
 	}
 	
 	public void show() {
-		System.out.println("주문 아이디: " + id);
-		System.out.println("주문 수량: " + amount);
-		System.out.println("고객 리스트: " + customer);
-		System.out.println("상품 리스트: " + product);
-		
+//		System.out.println("주문 아이디: " + id);
+//		System.out.println("주문 수량: " + amount);
+//		System.out.println("고객 리스트: " + customer);
+//		System.out.println("상품 리스트: " + product);
+		System.out.println(this.toString());
+	}
+	
+	@Override
+	public String toString() {
+		return "주문 아이디: " + id + ", 수량: " + amount + "\n고객 정보: [" + customer + "]\n주문 상품: [" + product + "]";
 	}
 
 	public int getId() {

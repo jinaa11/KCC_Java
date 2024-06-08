@@ -17,12 +17,18 @@ public class Customer {
 	}
 
 	public void show() {
-		System.out.println("고객 아이디: " + id);
-		System.out.println("고객명: " + name);
-		System.out.println("주소: " + address);
-		System.out.println("휴대폰 번호: " + phoneNo);
+//		System.out.println("고객 아이디: " + id);
+//		System.out.println("고객명: " + name);
+//		System.out.println("주소: " + address);
+//		System.out.println("휴대폰 번호: " + phoneNo);
+		System.out.println(this.toString());
 	}
 	
+	@Override
+	public String toString() {
+		return "고객 아이디: " + id + ", 이름: " + name + ", 주소: " + address + ", 휴대폰 번호: " + phoneNo;
+	}
+
 	public int getId() {
 		return id;
 	}
