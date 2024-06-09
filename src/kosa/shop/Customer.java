@@ -3,15 +3,17 @@ package kosa.shop;
 public class Customer {
 	private int id;
 	private String name;
+	private int age;
 	private String address;
 	private String phoneNo;
 	
 	public Customer() {}
 
-	public Customer(int id, String name, String address, String phoneNo) {
+	public Customer(int id, String name, int age, String address, String phoneNo) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.age = age;
 		this.address = address;
 		this.phoneNo = phoneNo;
 	}
@@ -26,7 +28,7 @@ public class Customer {
 	
 	@Override
 	public String toString() {
-		return "고객 아이디: " + id + ", 이름: " + name + ", 주소: " + address + ", 휴대폰 번호: " + phoneNo;
+		return "고객 아이디: " + id + ", 이름: " + name + ", 나이: " + age + ", 주소: " + address + ", 휴대폰 번호: " + phoneNo;
 	}
 
 	public int getId() {

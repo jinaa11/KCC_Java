@@ -1,10 +1,11 @@
 package kosa.shop;
 
-public class Category {
+public class Category implements Comparable<Category> {
 	private int categoryId;
 	private String categoryName;
-	
-	public Category() {}
+
+	public Category() {
+	}
 
 	public Category(int categoryId, String categoryName) {
 		super();
@@ -27,5 +28,16 @@ public class Category {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
+
+	@Override
+	public int compareTo(Category o) {
+		// 카테고리명 오름차순 정렬
+		if(categoryName.compareTo(o.categoryName) > 0 ) {
+			return 1;
+		} else if(categoryName.compareTo(o.categoryName) < 0) {
+			return -1;
+		}
+		return 0;
+	}
+
 }

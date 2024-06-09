@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		ShoppingMall sm = new ShoppingMall();
 		while (true) {
-			System.out.println("1.고객 등록 2.상품 등록 3.상품 카테고리별 목록 보기 4.상품 주문하기 5.개별 주문 목록보기 6.종료하기");
+			System.out.println("1.고객 등록 2.상품 등록 3.상품 카테고리별 목록 보기 4.상품 주문하기 5.개별 주문 목록보기 6.총 매출액 확인 7.종료하기");
 			System.out.print("메뉴: ");
 			String menu = DataInput.sc.nextLine();
 
@@ -26,6 +26,9 @@ public class Main {
 				sm.customerOrderList();
 				break;
 			case "6":
+				sm.totalSales();
+				break;
+			case "7":
 				System.out.println("프로그램 종료");
 				return;
 			}

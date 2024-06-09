@@ -1,6 +1,7 @@
 package kosa.shop;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,12 +27,24 @@ public class ShoppingMall {
 	public void addCustomer() {
 		System.out.print("이름: ");
 		String name = DataInput.sc.nextLine();
+		System.out.print("나이: ");
+		int age = Integer.parseInt(DataInput.sc.nextLine());
 		System.out.print("주소: ");
 		String address = DataInput.sc.nextLine();
-		System.out.print("휴대폰 번호: ");
+		System.out.print("휴대폰 번호(예.010-1111-2222): ");
 		String phoneNo = DataInput.sc.nextLine();
-
-		customer.add(new Customer(customerId++, name, address, phoneNo));
+		
+		// phoneNo 정규 표현식
+		String pattern = "010-\\d{4}-\\d{4}";
+		
+		if(phoneNo.matches(pattern) ) {
+			customer.add(new Customer(customerId++, name, age, address, phoneNo));
+			System.out.println("고객 등록이 완료되었습니다.");
+		} else {
+			System.out.println("휴대폰 번호가 지정 형식에 맞지 않습니다.");
+		}
+		
+		
 
 	}
 
@@ -61,17 +74,20 @@ public class ShoppingMall {
 		}
 
 		product.add(new Product(existingCategoryId, categoryName, productId++, productName, price));
+		System.out.println("상품 등록이 완료되었습니다.");
 
 	}
 
 	// 상품 카테고리별 목록 보기
 	public void listCategory() {
+		Collections.sort(category);
+		
 		for (int i = 0; i < category.size(); i++) {
-			System.out.println("===== 카테고리 (" + category.get(i).getCategoryName() + ") =====");
+			System.out.println("========================= 카테고리 (" + category.get(i).getCategoryName() + ") =========================");
 			for (int j = 0; j < product.size(); j++) {
 				if (category.get(i).getCategoryName().equals(product.get(j).getCategoryName())) {
 					product.get(j).show();
-					System.out.println("-----------------------");
+					System.out.println("---------------------------------------------------------------");
 				}
 			}
 		}
@@ -87,7 +103,6 @@ public class ShoppingMall {
 		for(Customer c : customer) {
 			if(customerName.equals(c.getName())) {
 				orderCustomer = c;
-				c.show();
 			}
 		}
 		
@@ -101,17 +116,19 @@ public class ShoppingMall {
 		System.out.print("수량: ");
 		int amount = Integer.parseInt(DataInput.sc.nextLine());
 		
-		for(int i = 0; i < product.size(); i++) {
-			if(orderProduct.equals(product.get(i).getProductName())) {
-				order.add(new Order(orderId++, orderCustomer, product.get(i), amount));
+		boolean isFindProduct = false;
+		
+		for(Product p : product) {
+			if(orderProduct.equals(p.getProductName())) {
+				order.add(new Order(orderId++, orderCustomer, p, amount));
 				System.out.println("주문이 성공적으로 추가되었습니다.");
-				
+				isFindProduct = true;
+				break;
 			}
 		}
 		
-		Iterator<Order> it = order.iterator();
-		while(it.hasNext()) {
-			it.next().show();
+		if(!isFindProduct) {
+			System.out.println("존재하지 않는 상품입니다.");
 		}
 	}
 	
@@ -120,19 +137,19 @@ public class ShoppingMall {
 		System.out.print("주문자명: ");
 		String orderName = DataInput.sc.nextLine();
 		
-//		Iterator<Order> it = order.iterator();
-//		while(it.hasNext()) {
-//			if(orderName.equals(it.next().getCustomer().getName())) {
-//				it.next().show();
-//			}
-//		}
-		
 		for(int i = 0; i < order.size(); i++) {
 			if(orderName.equals(order.get(i).getCustomer().getName())) {
 				order.get(i).show();
+				System.out.println("-------------------------------------------------------------------------");
 			}
+		}	
+	}
+	
+	public void totalSales() {
+		int totalSales = 0;
+		for(Order o : order) {
+			totalSales += o.getAmount() * o.getProduct().getPrice();
 		}
-		
-		
+		System.out.println("총 매출액은 " + totalSales + "원 입니다.");
 	}
 }
