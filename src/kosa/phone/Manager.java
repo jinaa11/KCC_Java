@@ -122,13 +122,17 @@ public class Manager extends PhoneInfo {
 		String name = DataInput.sc.nextLine();
 		int idx = -1;
 
-		for (int i = 0; i < list.size(); i++) {
-			if (name.equals(list.get(i).getName())) {
-				System.out.println("검색한 이름: " + name);
-				list.get(i).show();
-				idx = i;
-			}
-		}
+		list.stream()
+			.filter(search -> name.equals(search.getName()))
+			.forEach(search -> search.show());
+
+//		for (int i = 0; i < list.size(); i++) {
+//			if (name.equals(list.get(i).getName())) {
+//				System.out.println("검색한 이름: " + name);
+//				list.get(i).show();
+//				idx = i;
+//			}
+//		}
 
 		// 검색된 내용이 없는 경우
 		if (idx == -1) {
@@ -212,9 +216,9 @@ public class Manager extends PhoneInfo {
 
 				@Override
 				public int compare(PhoneInfo o1, PhoneInfo o2) {
-					if(o1.getBirth().compareTo(o2.getBirth()) > 0) {
+					if (o1.getBirth().compareTo(o2.getBirth()) > 0) {
 						return -1;
-					} else if(o1.getBirth().compareTo(o2.getBirth()) < 0) {
+					} else if (o1.getBirth().compareTo(o2.getBirth()) < 0) {
 						return 1;
 					}
 					return 0;

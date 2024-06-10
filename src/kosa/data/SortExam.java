@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Random;
 import java.util.TreeSet;
 
-public class SoftExam {
+public class SortExam {
 
 	public static void main(String[] args) {
 		// Á¤·Ä

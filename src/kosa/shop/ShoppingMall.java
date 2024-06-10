@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class ShoppingMall {
 	List<Customer> customer;
@@ -60,12 +61,16 @@ public class ShoppingMall {
 		int existingCategoryId = -1;
 
 		// 기존 카테고리 확인
-		for (Category c : category) {
-			if (categoryName.equals(c.getCategoryName())) {
-				existingCategoryId = c.getCategoryId();
-				break;
-			}
-		}
+//		for (Category c : category) {
+//			if (categoryName.equals(c.getCategoryName())) {
+//				existingCategoryId = c.getCategoryId();
+//				break;
+//			}
+//		}
+		
+		Category cate = category.stream()
+				.filter(c1 -> categoryName.equals(c1.getCategoryName()))
+				.findFirst().orElseThrow();
 
 		// 카테고리가 존재하지 않으면 새로운 카테고리 추가
 		if (existingCategoryId == -1) {
@@ -91,45 +96,62 @@ public class ShoppingMall {
 				}
 			}
 		}
+		
 	}
 
 	// 상품 주문하기
-	public void orderProduct() {
+	public void orderProduct() throws Exception {
 		System.out.print("주문자 이름: ");
 		String customerName = DataInput.sc.nextLine();
 		Customer orderCustomer = null;
 		
 		// 주문할 사람 이름과 일치하는 고객 정보 찾기
-		for(Customer c : customer) {
-			if(customerName.equals(c.getName())) {
-				orderCustomer = c;
-			}
-		}
+//		for(Customer c : customer) {
+//			if(customerName.equals(c.getName())) {
+//				orderCustomer = c;
+//			}
+//		}
+//		
+//		if(orderCustomer == null) {
+//			System.out.println("존재하지 않는 고객입니다.");
+//			return;
+//		}
 		
-		if(orderCustomer == null) {
-			System.out.println("존재하지 않는 고객입니다.");
-			return;
-		}
+		orderCustomer = customer.stream()
+				.filter(c1 -> customerName.equals(c1.getName()))
+				.findFirst().orElseThrow(() -> new Exception("존재하지 않는 고객입니다."));
 		
 		System.out.print("주문할 상품: ");
 		String orderProduct = DataInput.sc.nextLine();
 		System.out.print("수량: ");
 		int amount = Integer.parseInt(DataInput.sc.nextLine());
 		
-		boolean isFindProduct = false;
+//		boolean isFindProduct = false;
 		
-		for(Product p : product) {
-			if(orderProduct.equals(p.getProductName())) {
-				order.add(new Order(orderId++, orderCustomer, p, amount));
-				System.out.println("주문이 성공적으로 추가되었습니다.");
-				isFindProduct = true;
-				break;
-			}
-		}
+//		for(Product p : product) {
+//			if(orderProduct.equals(p.getProductName())) {
+//				order.add(new Order(orderId++, orderCustomer, p, amount));
+//				System.out.println("주문이 성공적으로 추가되었습니다.");
+//				isFindProduct = true;
+//				break;
+//			}
+//		}
 		
-		if(!isFindProduct) {
-			System.out.println("존재하지 않는 상품입니다.");
-		}
+		Product p = product.stream()
+			.filter(p1 -> orderProduct.equals(p1.getProductName()))
+			.findFirst().orElseThrow(() -> new Exception("존재하지 않는 상품입니다."));
+		
+		order.add(new Order(orderId++, orderCustomer, p, amount));
+		
+//		if(op.isPresent()) {
+//			Product p = op.get();
+//			order.add(new Order(orderId++, orderCustomer, p, amount));
+//			isFindProduct = true;
+//		}
+		
+//		if(!isFindProduct) {
+//			System.out.println("존재하지 않는 상품입니다.");
+//		}
 	}
 	
 	// 개별 주문 목록 보기

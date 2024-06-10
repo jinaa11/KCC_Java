@@ -20,7 +20,11 @@ public class Main {
 				sm.listCategory();
 				break;
 			case "4":
-				sm.orderProduct();
+				try {
+					sm.orderProduct();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case "5":
 				sm.customerOrderList();
