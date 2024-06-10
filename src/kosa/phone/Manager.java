@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 // 전화번호 관리 전반적인 기능
 public class Manager extends PhoneInfo {
@@ -116,15 +117,17 @@ public class Manager extends PhoneInfo {
 		}
 	}
 
-	public void searchPhoneInfo() {
+	public void searchPhoneInfo() throws Exception {
 		// 검색하고자 하는 이름으로 1개의 PhoneInfo 객체의 내용 출력
 		System.out.print("검색할 이름: ");
 		String name = DataInput.sc.nextLine();
-		int idx = -1;
+//		int idx = -1;
 
-		list.stream()
-			.filter(search -> name.equals(search.getName()))
-			.forEach(search -> search.show());
+		PhoneInfo p = list.stream().filter(search -> name.equals(search.getName())).findFirst()
+				.orElseThrow(() -> new Exception("존재하지 않는 이름입니다."));
+
+		System.out.println("검색한 이름: " + name);
+		p.show();
 
 //		for (int i = 0; i < list.size(); i++) {
 //			if (name.equals(list.get(i).getName())) {
@@ -135,35 +138,43 @@ public class Manager extends PhoneInfo {
 //		}
 
 		// 검색된 내용이 없는 경우
-		if (idx == -1) {
-			System.out.println("존재하지 않는 이름입니다.");
-		}
+//		if (idx == -1) {
+//			System.out.println("존재하지 않는 이름입니다.");
+//		}
 
 	}
 
-	public void updatePhoneInfo() {
+	public void updatePhoneInfo() throws Exception {
 		// 이름을 입력 => 해당 phoneInfo 추출 => 수정 전화번호 입력 => 전화번호 수정이 완료
 		System.out.print("수정할 이름: ");
 		String name = DataInput.sc.nextLine();
-		int idx = -1;
+//		int idx = -1;
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			if (name.equals(list.get(i).getName())) {
+//				System.out.print("수정할 번호: ");
+//				String newPhone = DataInput.sc.nextLine();
+//				// 데이터를 수정할 때는 setter 사용
+//				list.get(i).setPhoneNo(newPhone);
+//				idx = i;
+//			}
+//		}
+//		System.out.println("수정 완료");
+//
+//		if (idx == -1) {
+//			System.out.println("존재하지 않습니다.");
+//		}
+		PhoneInfo p = list.stream().filter(update -> name.equals(update.getName())).findFirst()
+				.orElseThrow(() -> new Exception("존재하지 않는 이름입니다."));
 
-		for (int i = 0; i < list.size(); i++) {
-			if (name.equals(list.get(i).getName())) {
-				System.out.print("수정할 번호: ");
-				String newPhone = DataInput.sc.nextLine();
-				// 데이터를 수정할 때는 setter 사용
-				list.get(i).setPhoneNo(newPhone);
-				idx = i;
-			}
-		}
-		System.out.println("수정 완료");
+		System.out.print("수정할 번호 입력: ");
+		String newPhone = DataInput.sc.nextLine();
+		p.setPhoneNo(newPhone);
+		System.out.println("전화번호 수정이 완료되었습니다.");
 
-		if (idx == -1) {
-			System.out.println("존재하지 않습니다.");
-		}
 	}
 
-	public void deletePhoneInfo() {
+	public void deletePhoneInfo() throws Exception {
 		// 이름을 입력 => 대상 객체 위치 검색 => 인덱스 찾기 => 해당 객체 삭제 (뒤에 부터 앞으로 1칸씩 옮기고 마지막 것을 삭제 -
 		// 인덱스 하나 감소)
 //		System.out.print("삭제할 이름 입력: ");
@@ -186,19 +197,26 @@ public class Manager extends PhoneInfo {
 
 		System.out.print("삭제할 이름 입력: ");
 		String name = DataInput.sc.nextLine();
-		int idx = -1;
+//		int idx = -1;
+//
+//		for (int i = 0; i < list.size(); i++) {
+//			if (name.equals(list.get(i).getName())) {
+//				idx = i;
+//				list.remove(i);
+//			}
+//		}
+//		System.out.println("삭제 완료");
+//
+//		if (idx == -1) {
+//			System.out.println("존재하지 않습니다.");
+//		}
 
-		for (int i = 0; i < list.size(); i++) {
-			if (name.equals(list.get(i).getName())) {
-				idx = i;
-				list.remove(i);
-			}
-		}
-		System.out.println("삭제 완료");
+		PhoneInfo p = list.stream().filter(del -> name.equals(del.getName())).findFirst()
+				.orElseThrow(() -> new Exception("존재하지 않는 이름입니다."));
 
-		if (idx == -1) {
-			System.out.println("존재하지 않습니다.");
-		}
+		list.remove(p);
+		System.out.println("삭제가 완료되었습니다.");
+
 	}
 
 	public void sortPhoneInfo() {
@@ -206,7 +224,6 @@ public class Manager extends PhoneInfo {
 		System.out.println("1.이름 오름차순 2.생년월일 내림차순");
 		System.out.print("메뉴: ");
 		String menu = DataInput.sc.nextLine();
-//		Collections.sort(list);
 		switch (menu) {
 		case "1":
 			Collections.sort(list);
@@ -224,6 +241,7 @@ public class Manager extends PhoneInfo {
 					return 0;
 				}
 			});
+
 			break;
 		}
 	}

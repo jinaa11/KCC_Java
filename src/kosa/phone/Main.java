@@ -24,13 +24,25 @@ public class Main {
 				m.listPhoneInfo();
 				break;
 			case "3":
-				m.searchPhoneInfo();
+				try {
+					m.searchPhoneInfo();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case "4":
-				m.updatePhoneInfo();
+				try {
+					m.updatePhoneInfo();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case "5":
-				m.deletePhoneInfo();
+				try {
+					m.deletePhoneInfo();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			case "6":
 				m.sortPhoneInfo();
