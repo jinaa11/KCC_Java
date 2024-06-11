@@ -1,5 +1,10 @@
 package kosa.phone;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -243,6 +248,38 @@ public class Manager extends PhoneInfo {
 			});
 
 			break;
+		}
+	}
+	
+	public void writePhoneInfo() {
+		ObjectOutputStream oos = null;
+		
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("phoneInfo.txt"));
+			oos.writeObject(list); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {}
+		}
+		System.out.println("데이터 저장 완료");
+	}
+	
+	public void readPhoneInfo() {
+		ObjectInputStream ois = null;
+		
+		try {
+			ois = new ObjectInputStream(new FileInputStream("phoneInfo.txt"));
+			list = (List<PhoneInfo>) ois.readObject();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ois.close();
+			} catch (IOException e) {}
 		}
 	}
 }

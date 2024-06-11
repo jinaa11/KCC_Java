@@ -1,7 +1,9 @@
 package kosa.phone;
 
+import java.io.Serializable;
+
 // 1명의 전화번호 도메인
-public class PhoneInfo implements Comparable<PhoneInfo> {
+public class PhoneInfo implements Comparable<PhoneInfo>, Serializable {
 	// (name, phoneNo, birth): 필드
 	private String name;
 	private String phoneNo;
