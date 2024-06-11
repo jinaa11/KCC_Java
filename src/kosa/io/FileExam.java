@@ -3,6 +3,7 @@ package kosa.io;
 import java.io.File;
 
 public class FileExam {
+	// 재귀 함수
 	public static void show(File file) {
 		File list[] = file.listFiles();
 		
@@ -17,7 +18,6 @@ public class FileExam {
 		}
 	}
 	
-	
 	public static void main(String[] args) {
 		String path = "C:\\work\\work_java\\Kcc_Java";
 		
@@ -31,11 +31,8 @@ public class FileExam {
 //			File arr[] = f.listFiles(); // 목록 조회
 //			for(int i = 0; i < arr.length; i++) {
 //				System.out.println(arr[i].getName());
-//				
 //			}
-//			
-//			
-//			
+//	
 //		} else {
 //			System.out.println("파일 입니다.");
 //		}
